@@ -7,7 +7,6 @@ const { JWT_SECRET, NODE_ENV } = process.env;
 const saltRounds = 10;
 
 const authRegister = async (request, response) => {
-    console.log("ihgioh4go34og")
     const { username, email, phone, password, image, isSeller, description } = request.body;
     console.log({ username, email })
     const list = request.headers['x-forwarded-for'] || request.socket.remoteAddress;

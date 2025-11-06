@@ -4,7 +4,7 @@ const compression = require('compression');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const connect = require('./configs/db');
-const { authRoute, userRoute, gigRoute } = require('./routes');
+const { authRoute, userRoute, gigRoute, orderRoute, reviewRoute } = require('./routes');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 8080;
@@ -23,13 +23,14 @@ app.use(cors({
 }));
 
 // Example Route
-app.use("/", (request, response) => response.send('Hello world'));
+// app.use("/", (request, response) => response.send('Hello world'));
 
 // Other Routes
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
-app.use("api/gigs", gigRoute);
-
+app.use("/api/gigs", gigRoute);
+app.use('/api/orders', orderRoute);
+app.use('/api/reviews', reviewRoute);
 
 app.listen(PORT, async () => {
     try {
