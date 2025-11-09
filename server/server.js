@@ -4,7 +4,7 @@ const compression = require('compression');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const connect = require('./configs/db');
-const { authRoute, userRoute, gigRoute, orderRoute, reviewRoute } = require('./routes');
+const { authRoute, userRoute, gigRoute, orderRoute, reviewRoute, conversationRoute, messageRoute } = require('./routes');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 8080;
@@ -31,6 +31,9 @@ app.use("/api/users", userRoute);
 app.use("/api/gigs", gigRoute);
 app.use('/api/orders', orderRoute);
 app.use('/api/reviews', reviewRoute);
+app.use('/api/conversations', conversationRoute);
+app.use('/api/messages', messageRoute);
+
 
 app.listen(PORT, async () => {
     try {
