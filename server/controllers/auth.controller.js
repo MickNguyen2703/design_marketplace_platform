@@ -35,9 +35,16 @@ const authRegister = async (request, response) => {
     }
     catch (error) {
         console.log(error);
+        if (error.code === 11000) {
+            const key = Object.keys(error.keyValue)[0];
+            return response.status(400).send({
+                error: true,
+                message: `${key.charAt(0).toUpperCase() + key.slice(1)} already exists!`
+            });
+        }
         return response.status(500).send({
             error: true,
-            message: 'Something went wrong!'
+            message: error.message || 'Something went wrong!'
         });
     }
 }

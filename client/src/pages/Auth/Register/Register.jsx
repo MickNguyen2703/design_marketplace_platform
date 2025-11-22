@@ -36,17 +36,24 @@ const Register = () => {
 
     setLoading(true);
     try {
-      const { url } = await generateImageURL(image);
+      let url = null;
+      if (image) {
+        const uploadData = await generateImageURL(image);
+        url = uploadData.url;
+      }
+      
       const { data } = await axiosFetch.post("/auth/register", {
         ...formInput,
         image: url,
       });
+      console.log({ data });
       toast.success("Registration successful!");
       setLoading(false);
       navigate("/login");
     } catch (error) {
-      toast.error("Account already exist");
-      // setLoading(false);
+      console.log(error);
+      toast.error(error.response?.data?.message || "Something went wrong!");
+      setLoading(false);
     }
   };
 
