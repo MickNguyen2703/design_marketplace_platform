@@ -25,7 +25,7 @@ const paths = [
   { path: "/", element: <Home /> },
   { path: "/gig/:_id", element: <Gig /> },
   { path: "/gigs", element: <Gigs /> },
-  { path: "/myGigs", element: <MyGigs /> },
+  { path: "/my-gigs", element: <MyGigs /> },
   { path: "/orders", element: <Orders /> },
   { path: "/messages", element: <Messages /> },
   { path: "/message/:id", element: <Message /> },

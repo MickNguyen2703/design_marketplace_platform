@@ -23,6 +23,7 @@ const MyGigs = () => {
         .catch(({ response }) => {
           console.log(response.data);
         }),
+    enabled: !!user,
   });
 
   const mutation = useMutation({
@@ -52,7 +53,7 @@ const MyGigs = () => {
         <div className="container">
           <div className="title">
             <h1>My Gigs</h1>
-            <Link to="/organize" className="link">
+            <Link to="/add" className="link">
               <button>Add New Gig</button>
             </Link>
           </div>

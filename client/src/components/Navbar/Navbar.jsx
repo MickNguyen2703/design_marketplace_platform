@@ -34,12 +34,13 @@ const Navbar = () => {
 
   useEffect(() => {
     (async () => {
-      setIsLoading(true);
+      if (!user) setIsLoading(true);
       try {
         const { data } = await axiosFetch.get("/auth/me");
         setUser(data.user);
       } catch ({ response }) {
         localStorage.removeItem("user");
+        setUser(null);
       } finally {
         setIsLoading(false);
       }
@@ -160,7 +161,7 @@ const Navbar = () => {
                           <Link className="link" to="/my-gigs">
                             Gigs
                           </Link>
-                          <Link className="link" to="/organize">
+                          <Link className="link" to="/add">
                             Add New Gig
                           </Link>
                         </>
