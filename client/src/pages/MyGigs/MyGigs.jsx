@@ -31,9 +31,19 @@ const MyGigs = () => {
     onSuccess: () => queryClient.invalidateQueries(["my-gigs"]),
   });
 
-  const handleGigDelete = (gig) => {
+  const handleGigDelete = (event, gig) => {
+    event.stopPropagation();
     mutation.mutate(gig._id);
-    toast.success(gig.title + " deleted successfully!");
+    
+    let title = gig.title;
+    const suffix = " deleted successfully!";
+    const maxTitleLen = 38 - suffix.length;
+
+    if (title.length > maxTitleLen) {
+      title = title.substring(0, maxTitleLen - 3) + "...";
+    }
+    
+    toast.success(title + suffix);
   };
 
   useEffect(() => {
@@ -87,7 +97,7 @@ const MyGigs = () => {
                       className="delete"
                       src="./media/delete.png"
                       alt="delete"
-                      onClick={() => handleGigDelete(gig)}
+                      onClick={(event) => handleGigDelete(event, gig)}
                     />
                   </td>
                 </tr>

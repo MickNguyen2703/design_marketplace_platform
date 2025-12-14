@@ -133,7 +133,7 @@ const Add = () => {
                 />
               </div>
               <button disabled={!!disabled} onClick={handleImageUploads}>
-                {uploading ? "uploading" : disabled ? "Uploaded" : "upload"}
+                {uploading ? "Uploading" : disabled ? "Uploaded" : "Upload"}
               </button>
             </div>
 
@@ -209,6 +209,7 @@ const Add = () => {
             <input
               name="price"
               type="number"
+              required
               min="1"
               onChange={handleFormChange}
             />

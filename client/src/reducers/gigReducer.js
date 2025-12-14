@@ -10,7 +10,7 @@ export const initialState = {
     deliveryTime: '',
     revisionNumber: '',
     features: [],
-    price: 0,
+    price: '',
 }
 
 export const gigReducer = (state, { type, payload }) => {

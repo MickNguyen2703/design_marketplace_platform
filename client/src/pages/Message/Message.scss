@@ -21,12 +21,12 @@
         }
 
         .messages {
-            margin: 30px 0;
+            margin: 35px 0;
             padding: 50px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            // height: max-content;
+            height: 450px;
             overflow-y: scroll;
 
             .item {
@@ -75,7 +75,7 @@
             border: .5px solid #e9e8e8;
             margin-bottom: 10px;
         }
-    
+
         .write {
             display: flex;
             align-items: center;

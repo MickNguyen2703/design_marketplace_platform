@@ -5,6 +5,8 @@ import { axiosFetch } from "../../utils";
 import { Link, useParams } from "react-router-dom";
 import { Loader, NextArrow, PrevArrow, Reviews } from "../../components";
 import "./Gig.scss";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../atoms";
 
 import {
   CarouselProvider,
@@ -33,6 +35,7 @@ const MONTHS = [
 
 const Gig = () => {
   const { _id } = useParams();
+  const currentUser = useRecoilValue(userState);
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["gig"],
@@ -219,9 +222,15 @@ const Gig = () => {
                 </div>
               ))}
             </div>
-            <Link to={`/pay/${_id}`}>
-              <button>Continue</button>
-            </Link>
+            {currentUser?.isSeller ? (
+                <button onClick={() => toast.error("Sellers cannot purchase gigs!")}>
+                  Continue
+                </button>
+            ) : (
+              <Link to={`/pay/${_id}`}>
+                <button>Continue</button>
+              </Link>
+            )}
           </div>
         </div>
       )}
