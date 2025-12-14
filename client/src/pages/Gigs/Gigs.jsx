@@ -7,7 +7,7 @@ import "./Gigs.scss";
 
 const Gigs = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const [sortBy, setSortBy] = useState("sales");
+  const [sortBy, setSortBy] = useState("Best Selling");
   const minRef = useRef();
   const maxRef = useRef();
   const { search } = useLocation();
@@ -66,8 +66,8 @@ const Gigs = () => {
           </div>
           <div className="right">
             <span className="sortBy">Sort By</span>
-            <span className="sortType">
-              {sortBy === "sales" ? "Best Selling" : "Newest"}
+            <span className="sortType" style={{ cursor: "pointer" }} onClick={() => setOpenMenu(!openMenu)}>
+              {sortBy === "Best Selling" ? "Best Selling" : "Newest"}
             </span>
             <img
               src="./media/down.png"
@@ -76,10 +76,10 @@ const Gigs = () => {
             />
             {openMenu && (
               <div className="rightMenu">
-                {sortBy === "sales" ? (
-                  <span onClick={() => handleSortBy("createdAt")}>Newest</span>
+                {sortBy === "Best Selling" ? (
+                  <span onClick={() => handleSortBy("Newest")}>Newest</span>
                 ) : (
-                  <span onClick={() => handleSortBy("sales")}>
+                  <span onClick={() => handleSortBy("Best Selling")}>
                     Best Selling{" "}
                   </span>
                 )}
