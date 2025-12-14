@@ -71,7 +71,7 @@ export const cards = [
   },
   {
     id: 11,
-    title: "Data Entry",
+    title: "Writing",
     desc: "Learn your business",
     img: "https://callcentervn.com/userfiles/files/beautiful-young-woman-home-office-working-from-home-teleworking-concept.jpg",
     slug: 'writing'

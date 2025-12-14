@@ -8,10 +8,11 @@ import "./Gigs.scss";
 const Gigs = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [sortBy, setSortBy] = useState("sales");
-  const [category, setCategory] = useState(".");
   const minRef = useRef();
   const maxRef = useRef();
   const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const category = params.get("category");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,7 +26,6 @@ const Gigs = () => {
           `/gigs${search ? search + "&" : "?"}min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sortBy}`
         )
         .then(({ data }) => {
-          setCategory(data[0].category);
           return data;
         })
         .catch((error) => {
@@ -51,11 +51,11 @@ const Gigs = () => {
     <div className="gigs">
       <div className="container">
         <span className="breadcrumbs">
-          Breadcrumbs {">"} {category[0]?.toUpperCase() + category.slice(1)}
+          Breadcrumbs {">"} {category ? category[0].toUpperCase() + category.slice(1) : "All Gigs"}
         </span>
-        <h1>{category[0]?.toUpperCase() + category.slice(1)}</h1>
+        <h1>{category ? category[0].toUpperCase() + category.slice(1) : "All Gigs"}</h1>
         <p>
-          Explore the boundaries of art and technology with {category} artists
+          Explore the boundaries of art and technology with {category || "Marketplace"} artists
         </p>
         <div className="menu">
           <div className="left">
