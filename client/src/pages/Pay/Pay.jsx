@@ -11,14 +11,14 @@ const stripePromise = loadStripe(
 );
 
 const Pay = () => {
-  const { _id } = useParams();
+  const { id } = useParams();
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axiosFetch.post(
-          `/orders/create-payment-intent/${_id}`
+          `/orders/create-payment-intent/${id}`
         );
         setClientSecret(data.clientSecret);
       } catch ({ response }) {
@@ -35,6 +35,7 @@ const Pay = () => {
   const options = {
     clientSecret,
     appearance,
+    locale: "en",
   };
 
   return (

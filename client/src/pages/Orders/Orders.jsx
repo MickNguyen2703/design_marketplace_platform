@@ -21,7 +21,7 @@ const Orders = () => {
       axiosFetch
         .get(`/orders`)
         .then(({ data }) => {
-          return data;
+          return data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         })
         .catch(({ response }) => {
           console.log(response.data);

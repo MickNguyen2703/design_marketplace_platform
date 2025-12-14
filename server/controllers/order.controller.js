@@ -1,6 +1,7 @@
 const { Order, Gig } = require("../models");
 const { CustomException } = require("../utils");
 
+
 const getOrders = async (request, response) => {
     try {
         const orders = await Order.find({
@@ -22,12 +23,19 @@ const getOrders = async (request, response) => {
 
 const paymentIntent = async (request, response) => {
     const { _id } = request.params;
+    console.log("paymentIntent hit with ID:", _id);
     try {
         if (request.isSeller === true) {
             throw CustomException("Seller can't order gig", 403)
         }
 
         const gig = await Gig.findOne({ _id });
+
+        const stripeKey = process.env.STRIPE;
+        if (!stripeKey) {
+            throw CustomException("Stripe key missing in server environment", 500);
+        }
+        const stripe = require("stripe")(stripeKey);
 
         const payment_intent = await stripe.paymentIntents.create({
             amount: gig.price * 100,
@@ -48,6 +56,7 @@ const paymentIntent = async (request, response) => {
         });
 
         await order.save();
+        console.log("Order saved, returning clientSecret:", payment_intent.client_secret);
         return response.send({
             error: false,
             clientSecret: payment_intent.client_secret
@@ -55,6 +64,7 @@ const paymentIntent = async (request, response) => {
 
     }
     catch ({ message, status = 500 }) {
+        console.error("paymentIntent Error:", message);
         return response.send({
             error: true,
             message
