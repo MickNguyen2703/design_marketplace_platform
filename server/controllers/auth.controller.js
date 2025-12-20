@@ -9,8 +9,8 @@ const saltRounds = 10;
 const authRegister = async (request, response) => {
     const { username, email, phone, password, image, isSeller, description } = request.body;
     console.log({ username, email })
-    const list = request.headers['x-forwarded-for'] || request.socket.remoteAddress;
-    const ips = list.split(',');
+    // const list = request.headers['x-forwarded-for'] || request.socket.remoteAddress;
+    // const ips = list.split(',');
 
     try {
         const hash = bcrypt.hashSync(password, saltRounds);

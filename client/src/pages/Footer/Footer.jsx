@@ -69,14 +69,14 @@ const Footer = () => {
           </div>
           <div className="right">
             <div className="social">
-              <img src="./media/twitter.png" alt="" />
-              <img src="./media/facebook.png" alt="" />
-              <img src="./media/linkedin.png" alt="" />
-              <img src="./media/pinterest.png" alt="" />
-              <img src="./media/instagram.png" alt="" />
+              <img src="/media/twitter.png" alt="" />
+              <img src="/media/facebook.png" alt="" />
+              <img src="/media/linkedin.png" alt="" />
+              <img src="/media/pinterest.png" alt="" />
+              <img src="/media/instagram.png" alt="" />
             </div>
             <div className="link">
-              <img src="./media/language.png" alt="" />
+              <img src="/media/language.png" alt="" />
               <span>English</span>
             </div>
           </div>

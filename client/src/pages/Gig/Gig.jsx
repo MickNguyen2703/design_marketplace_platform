@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { axiosFetch } from "../../utils";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Loader, NextArrow, PrevArrow, Reviews } from "../../components";
 import "./Gig.scss";
 import { useRecoilValue } from "recoil";
@@ -35,6 +35,7 @@ const MONTHS = [
 
 const Gig = () => {
   const { _id } = useParams();
+  const navigate = useNavigate();
   const currentUser = useRecoilValue(userState);
 
   const { isLoading, error, data } = useQuery({
@@ -222,15 +223,19 @@ const Gig = () => {
                 </div>
               ))}
             </div>
-            {currentUser?.isSeller ? (
-                <button onClick={() => toast.error("Sellers cannot purchase gigs!")}>
-                  Continue
-                </button>
-            ) : (
-              <Link to={`/pay/${_id}`}>
-                <button>Continue</button>
-              </Link>
-            )}
+            <button onClick={() => {
+              if (!currentUser) {
+                navigate("/login");
+                return;
+              }
+              if (currentUser.isSeller) {
+                toast.error("Sellers cannot purchase gigs!");
+                return;
+              }
+              navigate(`/pay/${_id}`);
+            }}>
+              Continue
+            </button>
           </div>
         </div>
       )}
