@@ -1,5 +1,5 @@
 # Marketplace Platform (MERN Stack) (Minh Hung Nguyen)
-
+# Demo: https://youtu.be/PdFPrbv8fg0
 A comprehensive services marketplace built with the MERN stack (MongoDB, Express, Vite+React, Node.js), featuring secure payments with Stripe, image uploads via Cloudinary, and an integrated messaging system.
 
 ## 🚀 Features
