@@ -1,0 +1,21 @@
+### Server
+
+`JWT_SECRET=` e.g. this_is_secret_123 or anything
+
+`MONGODB_URL=mongodb://localhost:27017/ + name of database` e.g. mongodb URL
+
+`STRIPE=`e.g. Secret key from stripe dashboard
+
+`NODE_ENV=development` e.g. 'development' for local and 'production' for production
+
+### Client
+
+`VITE_API_URL=` e.g. http://localhost:3000/api or production deployed server link
+
+`CLOUDINARY_ENV=` e.g. cloudinary environment
+
+`VITE_CLOUDINARY_PRESET=`e.g. cloudinary preset
+
+`VITE_CLOUDINARY_CLOUD_NAME=` e.g. cloudinary cloud name
+
+`VITE_STRIPE_PUBLISHABLE_KEY=` e.g. Publishable key from stripe dashboard
